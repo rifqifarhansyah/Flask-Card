@@ -3,6 +3,8 @@ import pandas
 import random
 
 BACKGROUND_COLOR = "#B1DDC6"
+current_card = {}
+to_learn = {}
 
 try:
     data = pandas.read_csv("data/words_to_learn.csv")
@@ -11,8 +13,7 @@ except FileNotFoundError:
     to_learn = original_data.to_dict(orient="records")
 else:
     to_learn = data.to_dict(orient="records")
-current_card = {}
-to_learn = {}
+
 def next_card():
     global flip_timer
     global current_card
