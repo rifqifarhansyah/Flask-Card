@@ -17,11 +17,12 @@ else:
 def next_card():
     global flip_timer
     global current_card
+    window.after_cancel(flip_timer)
     current_card = random.choice(to_learn)
     canvas.itemconfig(card_title, text="Indonesian", fill="black")
     canvas.itemconfig(card_word, text=current_card["INDO"], fill="black")
     canvas.itemconfig(card_background, image=card_front_img)
-    window.after(3000, flip_card)
+    flip_timer = window.after(3000, func=flip_card)
 
 def flip_card():
     canvas.itemconfig(card_title, text="English", fill="white")
@@ -58,11 +59,5 @@ known_button = Button(image=check_img, highlightthickness=0, command=is_known)
 known_button.grid(column=1, row=1)
 
 next_card()
-
-canvas.grid(row=0, column=0)
-
-
-
-
 
 window.mainloop()
